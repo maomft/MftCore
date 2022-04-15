@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\fengtao.mao\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\fengtao.mao\\.nuget\\packages"
+    ]
+  }
+}

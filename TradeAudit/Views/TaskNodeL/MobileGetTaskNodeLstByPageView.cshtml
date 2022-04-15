@@ -1,0 +1,124 @@
+﻿@{ ViewData["Title"] = "审批数据列表"; }
+@section Scripts
+{
+    <script src="/js/TaskNodeL/MobileGetTaskNodeLstByPageView.js"></script>
+}
+<style>
+    .layui-field-title {
+        margin-top: 30px;
+    }
+
+    .grid-demo {
+        padding: 10px;
+        line-height: 50px;
+        text-align: center;
+        background-color: #79C48C;
+        color: #fff;
+    }
+
+    .grid-demo-bg1 {
+        background-color: #63BA79;
+    }
+
+    .grid-demo-bg2 {
+        background-color: #49A761;
+    }
+
+    .grid-demo-bg3 {
+        background-color: #38814A;
+    }
+
+    td.details-control {
+        background: url("/lib/jquerydatatable/images/details_open.png") no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('/lib/jquerydatatable/images/details_close.png') no-repeat center center;
+    }
+</style>
+<div class="layui-fluid">
+    <div class="layui-container" style="width: 100%">
+        <div class="layui-card" style="width: 100%">
+            <div class="layui-card-header">
+                <h1>交易审批</h1>
+            </div>
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this"><a href="@Url.Action("MobileGetTaskNodeLstByPageView","TaskNodeL")">审批数据列表</a></li>
+                    <li><a href="@Url.Action("MobileGetTaskNodeGroupView","TaskNodeL")">审批数据分组</a></li>
+                </ul>
+                @*<div class="layui-tab-content">
+                    </div>*@
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row" style="width: 100%">
+                    <div class="layui-col-xs12">
+                        <form hidden id="BaseFormId" class="layui-form layui-form-pane" lay-filter="first">
+                            <div class="layui-row layui-col-space10 layui-form-item">
+                                <div class="layui-col-lg3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">装饰A</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="FStockName" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-lg3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">装饰B</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="FMaterialName" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layui-inline">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn layuiadmin-btn-list" lay-filter="*" id="SumitBtnId">
+                                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card" style="width: 100%">
+            <div class="layui-card-body">
+
+                <div class="layui-row" style="width: 100%">
+                    <div class="layui-col-xs12">
+                        <div class="layui-table-tool">
+                            <div class="layui-table-tool-temp">
+                                <div class="layui-btn-container">
+                                    <button id="BatchSumitButton" class="layui-btn layui-btn-sm" lay-event="getCheckData">批量审核</button>
+                                    <button id="BatchRefuseButton" class="layui-btn layui-btn-sm" lay-event="getCheckLength">批量拒绝</button>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="baseTable" class="cell-border hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="select_all" id="select-all" class="filled-in chk-col-blue" /><label for="select-all"></label></th>
+                                    <th></th>
+                                    <th>审批编号</th>
+                                    <th>审批节点编号</th>
+                                    <th>审批角色编号，审批用户</th>
+                                    <th>交易编号</th>
+                                    <th>是否会签角色</th>
+                                    <th>交易方向</th>
+                                    <th>交易日期</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+﻿@{ ViewData["Title"] = "交易指标"; }
+@model TradeAuditService.Models.WebApiResult.SingleTradeDetailNew.Row
+@section Scripts
+{
+    <script src="/js/TaskNodeL/MobileSingleTradeDetailNew.js"></script>
+}
+<style>
+    /* 示例 */
+    .layui-field-title {
+        margin-top: 30px;
+    }
+
+    .grid-demo {
+        padding: 10px;
+        line-height: 50px;
+        text-align: center;
+        background-color: #79C48C;
+        color: #fff;
+    }
+
+    .grid-demo-bg1 {
+        background-color: #63BA79;
+    }
+
+    .grid-demo-bg2 {
+        background-color: #49A761;
+    }
+
+    .grid-demo-bg3 {
+        background-color: #38814A;
+    }
+</style>
+<div class="layui-fluid">
+    <!--隐藏参数-->
+    <input hidden id="aTaskId" name="aTaskId" value="@ViewBag.aTaskId" />
+    <div class="layui-container" style="width: 100%">
+
+        <div class="layui-table-tool">
+            <div class="layui-table-tool-temp">
+                <div class="layui-btn-container">
+                    <button style="margin-right:50px" type="button" id="RebackButton" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button>
+
+                    <button id="AuditFlowButton" class="layui-btn layui-btn-sm">流程图</button>
+                    <button id="AuditLogButton" class="layui-btn layui-btn-sm layui-btn-normal">审批日志</button>
+                    <button id="LimitButton" class="layui-btn layui-btn-sm layui-btn-warm">限额</button>
+                    <button id="TradeButton" class="layui-btn layui-btn-sm layui-btn-danger">交易指标</button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card" style="width: 100%">
+            <div class="layui-card-header">
+                <h1>详细信息</h1>
+            </div>
+            <div class="layui-card-body">
+
+                <div class="layui-row" style="width: 100%">
+                    <div class="layui-col-xs12">
+                        <form class="layui-form" action="" style="border:double;">
+
+                            @{ if (Model != null && Model.R != null && Model.R.Count > 0)
+                                            {
+
+                                                int remainCount = Model.R.Count % 2;
+
+                                                if (remainCount > 0) Model.R.Add(new TradeAuditService.Models.WebApiResult.TaskNodeLst.TaskNodeColumn() { NAME = "", text = "" });
+
+                                                for (int i = 0; i < Model.R.Count - remainCount; i += 2)
+                                                {
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">@Model.R[i].NAME</label>
+                                        <div class="layui-input-inline">
+                                            <b style="color:blue">@Model.R[i].text</b>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">@Model.R[i + 1].NAME</label>
+                                        <div class="layui-input-inline">
+                                            <b style="color:blue">@Model.R[i + 1].text</b>
+                                        </div>
+                                    </div>
+                                </div> }
+
+
+
+                                            } }
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

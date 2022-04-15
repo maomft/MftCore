@@ -1,0 +1,132 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.6/layui/css/layui.css">
+
+    <style>
+        .layui-field-title {
+            margin-top: 30px;
+        }
+
+        .grid-demo {
+            padding: 10px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #79C48C;
+            color: #fff;
+        }
+
+        .grid-demo-bg1 {
+            background-color: #63BA79;
+        }
+
+        .grid-demo-bg2 {
+            background-color: #49A761;
+        }
+
+        .grid-demo-bg3 {
+            background-color: #38814A;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 内容主体区域 -->
+
+<div class="layui-row" style="width: 100%">
+    <div class="layui-col-xs12">
+        <input type="hidden" name="c" id="c" value="@ViewBag.c" />
+        <input hidden id="aTaskId" name="aTaskId" value="@ViewBag.aTaskId" />
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-header">流程图</div>
+    <div class="layui-body">
+        <div id="container" style="width:600px;height:300px"></div>
+    </div>
+</div>
+    <script src="/lib/layui-v2.5.6/layui/layui.js"></script>
+    <script src="/lib/DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="/js/CommonHelper.js"></script>
+    <script src="/lib/echarts/echarts.js"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+
+            $.post('/TaskNodeL/MobileSingleTaskNodeTree', { aTaskId: $("#aTaskId").val() }, function (str) {
+                var t = str.Data.rt.T;
+                console.log(t);
+
+                var data = {};
+                getDataFromT(t,data);
+
+                var dom = document.getElementById("container");
+                var myChart = echarts.init(dom);
+
+                var option = {
+                    series: [{
+                        type: "tree",
+                        data: [data],
+                        label: {
+                            position: "right"
+                        },
+                        orient: "TB"
+                    }]
+                }
+                myChart.setOption(option, true);
+
+
+            });
+
+
+            //树查询,并封装数据到target中
+            function getDataFromT(t, target) {
+                if (Array.isArray(t)) {
+                    for (var i = 0; i < t.length; i++) {
+                        let child = {};
+                        child.name = t[i].TX;
+                        target.push(child);
+                        if (t[i].hasOwnProperty("T")) {
+                            child.children = [];
+                            getDataFromT(t[i].T, child.children);
+                        }
+                        else
+                        {
+                            continue;;
+                        }
+                    }
+
+                } else {
+                    target.name = t.TX;
+                    if (t.hasOwnProperty("T")) {
+
+                        target.children = [];
+                        if (Array.isArray(t.T))
+                        {
+                            getDataFromT(t.T, target.children);
+                        }
+                        else {
+                            let objChild = {};
+                            target.children.push(objChild);
+                            getDataFromT(t.T, objChild);
+
+                        }
+
+
+
+                    }
+                    else {
+                        return;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

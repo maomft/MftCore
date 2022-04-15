@@ -1,0 +1,72 @@
+﻿@{ ViewData["Title"] = "库存"; }
+@section Scripts
+{
+    <script src="/js/TaskNodeL/MobileGetTaskNodeGroupView.js"></script>
+}
+<style>
+    .layui-field-title {
+        margin-top: 30px;
+    }
+
+    .grid-demo {
+        padding: 10px;
+        line-height: 50px;
+        text-align: center;
+        background-color: #79C48C;
+        color: #fff;
+    }
+
+    .grid-demo-bg1 {
+        background-color: #63BA79;
+    }
+
+    .grid-demo-bg2 {
+        background-color: #49A761;
+    }
+
+    .grid-demo-bg3 {
+        background-color: #38814A;
+    }
+
+    td.details-control {
+        background: url("/lib/jquerydatatable/images/details_open.png") no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('/lib/jquerydatatable/images/details_close.png') no-repeat center center;
+    }
+</style>
+<div class="layui-fluid">
+    <div class="layui-container" style="width: 100%">
+        <div class="layui-card" style="width: 100%">
+            <div class="layui-card-header">
+                <h1>交易审批</h1>
+            </div>
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li ><a href="@Url.Action("MobileGetTaskNodeLstByPageView","TaskNodeL")">审批数据列表</a></li>
+                    <li class="layui-this"><a href="@Url.Action("MobileGetTaskNodeGroupView","TaskNodeL")">审批数据分组</a></li>
+                </ul>
+        </div>
+        <div class="layui-card" style="width: 100%">
+            <div class="layui-card-body">
+
+                <div class="layui-row" style="width: 100%">
+                    <div class="layui-col-xs12">
+                        <table id="baseTable" class="cell-border hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>总个数</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

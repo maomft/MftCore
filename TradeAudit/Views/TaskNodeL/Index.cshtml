@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewData["Title"] = "交易审批";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    <script src="/js/TaskNodeL/Index.js"></script>
+}
+
+<style>
+    /* 示例 */
+    .layui-field-title {
+        margin-top: 30px;
+    }
+
+    .grid-demo {
+        padding: 10px;
+        line-height: 50px;
+        text-align: center;
+        background-color: #79C48C;
+        color: #fff;
+    }
+
+    .grid-demo-bg1 {
+        background-color: #63BA79;
+    }
+
+    .grid-demo-bg2 {
+        background-color: #49A761;
+    }
+
+    .grid-demo-bg3 {
+        background-color: #38814A;
+    }
+</style>
+<div class="layui-fluid">
+    <div class="layui-container" style="width: 100%">
+        <div class="layui-card" style="width: 100%">
+            <div class="layui-card-header">
+                <h1>交易审批</h1>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row" style="width: 100%">
+                    <div class="layui-col-xs12">
+                        <form id="BaseFormId" class="layui-form layui-form-pane" lay-filter="first">
+                            <div class="layui-row layui-col-space10 layui-form-item">
+                                    @*<div class="layui-col-lg3">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">仓库名称</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="FStockName" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-lg3">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">SKU名称</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="FMaterialName" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                    <div class="layui-inline">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn layuiadmin-btn-list" lay-filter="*" id="SumitBtnId">
+                                                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card" style="width: 100%">
+            <div class="layui-card-header">
+                <h1>数据表格</h1>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row" style="width: 100%">
+                    <div class="layui-col-xs12">
+
+                        <table id="baseTable" class="cell-border hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>审批编号</th>
+                                    <th>审批节点编号</th>
+                                    <th>审批角色编号，审批用户</th>
+                                    <th>交易编号</th>
+                                    <th>是否会签角色</th>
+                                    <th>交易方向</th>
+                                    <th>交易日期</th>
+                                </tr>
+                            </thead>
+
+                            @*<tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </tfoot>*@
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

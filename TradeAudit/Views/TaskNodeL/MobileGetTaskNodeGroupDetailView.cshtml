@@ -1,0 +1,94 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.6/layui/css/layui.css">
+
+    <link rel="stylesheet" href="/lib/DataTables/datatables.css" />
+    <style>
+        .layui-field-title {
+            margin-top: 30px;
+        }
+
+        .grid-demo {
+            padding: 10px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #79C48C;
+            color: #fff;
+        }
+
+        .grid-demo-bg1 {
+            background-color: #63BA79;
+        }
+
+        .grid-demo-bg2 {
+            background-color: #49A761;
+        }
+
+        .grid-demo-bg3 {
+            background-color: #38814A;
+        }
+
+        td.details-control {
+            background: url("/lib/jquerydatatable/images/details_open.png") no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('/lib/jquerydatatable/images/details_close.png') no-repeat center center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 内容主体区域 -->
+
+    <div class="layui-row" style="width: 100%">
+        <div class="layui-col-xs12">
+            <div class="layui-table-tool">
+                <div class="layui-table-tool-temp">
+                    <div class="layui-btn-container">
+                        <button id="BatchSumitButton" class="layui-btn layui-btn-sm" lay-event="getCheckData">批量审核</button>
+                        <button id="BatchRefuseButton" class="layui-btn layui-btn-sm" lay-event="getCheckLength">批量拒绝</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="c" id="c" value="@ViewBag.c"/>
+            <table id="baseTable" class="cell-border hover" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" name="select_all" id="select-all" class="filled-in chk-col-blue" /><label for="select-all"></label></th>
+                        <th></th>
+                        <th>审批编号</th>
+                        <th>审批节点编号</th>
+                        <th>审批角色编号，审批用户</th>
+                        <th>交易编号</th>
+                        <th>是否会签角色</th>
+                        <th>交易方向</th>
+                        <th>交易日期</th>
+                        @*<th>操作</th>*@
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <script src="/lib/layui-v2.5.6/layui/layui.js"></script>
+    <script src="/lib/DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="/js/CommonHelper.js"></script>
+    <script src="/lib/DataTables/datatables.min.js"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+    </script>
+    <script src="/js/TaskNodeL/MobileGetTaskNodeGroupDetailView.js"></script>
+</body>
+</html>
